@@ -8,9 +8,11 @@ const BorrowersLogs = function (borrowers) {
   this.lastname = borrowers.lastname;
   this.company = borrowers.company;
   this.item_borrowed = borrowers.item_borrowed;
+  this.handed_by = borrowers.handed_by;
   this.date_time_borrowed = borrowers.date_time_borrowed;
   this.borrowers_signature = borrowers.borrowers_signature;
   this.date_time_returned = borrowers.date_time_returned;
+  this.received_by = borrowers.received_by;
   this.borrowers_signature_returned = borrowers.borrowers_signature_returned;
   this.item_status = borrowers.item_status;
 };
@@ -52,11 +54,12 @@ BorrowersLogs.AddLog = (newLog, result) => {
 BorrowersLogs.UpdateLog = (borrowers_id, dataLog, result) => {
   console.log('id model', borrowers_id);
   SQL.query(
-    'UPDATE borrowers_logs SET date_time_returned = ?, borrowers_signature_returned = ?, item_status =? WHERE borrowers_id = ?',
+    'UPDATE borrowers_logs SET date_time_returned = ?, borrowers_signature_returned = ?, received_by = ?, item_status =? WHERE borrowers_id = ?',
     [
       dataLog.date_time_returned,
       dataLog.borrowers_signature_returned,
       dataLog.item_status,
+      dataLog.received_by,
       borrowers_id,
     ],
     (err, res) => {
