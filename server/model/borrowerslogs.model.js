@@ -33,7 +33,8 @@ BorrowersLogs.getAll = (result) => {
 
 //add logs for borrowers
 BorrowersLogs.AddLog = (newLog, result) => {
-  SQL.query('INSERT INTO borrowers_logs SET ?', newLog, (err, res) => {
+  const modifyLog = { ...newLog, date_time_borrowed: new Date() };
+  SQL.query('INSERT INTO borrowers_logs SET ?', modifyLog, (err, res) => {
     //checking error during request
     if (err) {
       console.log('error: ', err);
@@ -43,9 +44,9 @@ BorrowersLogs.AddLog = (newLog, result) => {
 
     console.log('Borrowers log created : ', {
       borrowers_id: res.borrowers_id,
-      ...newLog,
+      ...modifyLog,
     });
-    result(null, { borrowers_id: res.borrowers_id, ...newLog });
+    result(null, { borrowers_id: res.borrowers_id, ...modifyLog });
   });
 };
 
