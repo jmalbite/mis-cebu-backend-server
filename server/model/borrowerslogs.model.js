@@ -55,12 +55,13 @@ BorrowersLogs.AddLog = (newLog, result) => {
 BorrowersLogs.UpdateLog = (borrowers_id, dataLog, result) => {
   console.log('id model', borrowers_id);
   SQL.query(
-    'UPDATE borrowers_logs SET date_time_returned = ?, borrowers_signature_returned = ?, received_by = ?, item_status =? WHERE borrowers_id = ?',
+    'UPDATE borrowers_logs SET date_time_returned = ?, borrowers_signature_returned = ?, received_by = ?, item_remarks =?, item_status =? WHERE borrowers_id = ?',
     [
-      dataLog.date_time_returned,
+      new Date(),
       dataLog.borrowers_signature_returned,
-      dataLog.item_status,
       dataLog.received_by,
+      dataLog.item_remarks,
+      dataLog.item_status,
       borrowers_id,
     ],
     (err, res) => {
