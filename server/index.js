@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'http://192.168.209.181:3000',
 };
 
 //middlewares
